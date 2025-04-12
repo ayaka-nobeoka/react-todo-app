@@ -14,8 +14,10 @@ function App() {
     console.log(todoNameRef.current.value);
     setTodos((prevTodos) => {
       return [...prevTodos, { id: uuidv4(), name: name, completed: false }];
+      //新しい配列を作って、それを state にセットしている
     });
     todoNameRef.current.value = null;
+    //新しいタスクを追加したあと、入力欄の中身を消すため
   };
 
   const toggleTodo = (id) => {
@@ -42,3 +44,8 @@ function App() {
 }
 
 export default App;
+
+//[...prevTodos, 新しいTodoオブジェクト]
+//prevTodos：今までのタスクリスト（配列）
+//...prevTodos：その中身を展開（スプレッド）
+//{ id: uuidv4(), name: name, completed: false }：新しく追加したいタスク
