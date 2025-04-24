@@ -10,7 +10,12 @@ function App() {
     setInput(e.target.value);
     console.log(e.target.value);
   };
+  const handleDelete = (id) => {
+  const newState = state.filter((task) => task.id !== id)
+  setState(newState);
+  }
 
+  
   const handleSubmit = () => {
     if (input.trim() === "") return;
 
@@ -23,6 +28,8 @@ function App() {
     setState([...state, newTask]);
     setInput("");
   };
+
+
   return (
     <>
       <input value={input} onChange={handleChange}></input>
@@ -30,7 +37,7 @@ function App() {
       <ul>
         {state.map((task) => (
           <li key={task.id}>
-            {task.text} <button>削除</button>
+            {task.text} <button onClick={ () => handleDelete(task.id) }>削除</button>
             <button>完了</button>
           </li>
         ))}
